@@ -341,13 +341,12 @@
             
                var mensagem = `${linktitulo}
                             
-                               *${titulos}*
+                     *${titulos}*
+
+Nome: ${nome}
             
-            Nome: ${nome}
-            
-                 DATA E HORA ATUAL
-   *Data: ${new Date().toLocaleDateString()}* 
-   *Hora: ${new Date().toLocaleTimeString()}*
+                DATA E HORA ATUAL
+  *Data: ${new Date().toLocaleDateString()}*  *Hora: ${new Date().toLocaleTimeString()}*
         
                      Valor A PAGAR : ${valor}\n`;
             
@@ -370,10 +369,8 @@
             }
             
             var total = document.getElementById('total_display').innerText;
-  
-        
-            
-            mensagem += ` A RECEBER ${total}\n
+    
+            mensagem += ` A RECEBER ${total}
             
        *Nº Controle da Aposta* : *${senha}*
             
@@ -391,7 +388,7 @@
         }
 
         function verificarHorario() {
-            var dataLimite = new Date('2024-07-03T18:50:00'); // Data limite para as apostas
+            var dataLimite = new Date('2024-07-30T21:50:00'); // Data limite para as apostas
             var dataAtual = new Date();
 
             if (dataAtual > dataLimite) {
