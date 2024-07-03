@@ -161,7 +161,7 @@
             <div>
                 <span class="label_cota">3.0</span>
                 <span class="label_cota1">4.0</span>
-                <span class="label_cota2">5.0</span>
+                <span class="label_cota2">3.0</span>
             </div><br>
             <div>
                 <span id="total_display">Total: R$0,00</span>
@@ -244,7 +244,7 @@
                 if (i === 1) {
                     var option3 = document.createElement('option');
                     option3.value = 'EMPATE';
-                    option3.dataset.valor = '5';
+                    option3.dataset.valor = '4';
                     option3.text = 'EMPATE';
                     select.appendChild(option3);
                 }
@@ -252,7 +252,7 @@
                 if (i === 1) {
                     var option4 = document.createElement('option');
                     option4.value = 'FORA';
-                    option4.dataset.valor = '4';
+                    option4.dataset.valor = '3';
                     option4.text = 'FORA';
                     select.appendChild(option4);
                 }
@@ -388,7 +388,7 @@ Nome: ${nome}
         }
 
         function verificarHorario() {
-            var dataLimite = new Date('2024-07-30T21:50:00'); // Data limite para as apostas
+            var dataLimite = new Date('2024-07-03T18:50:00'); // Data limite para as apostas
             var dataAtual = new Date();
 
             if (dataAtual > dataLimite) {
