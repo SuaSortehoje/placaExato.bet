@@ -56,10 +56,12 @@
             color: white;
             margin-left: 10px;
             padding: 0px;
-            font-size: 14px;
+            font-size: 16px;
             margin-top:100px;
             background: green;
             text-align:center;
+            border-radius:10px;
+            padding:5px 10px;
         }
         button {
             border-radius: 10px;
@@ -103,7 +105,7 @@
         }
         .ima {
             width: 100%;
-            height: 100px;
+            height: 70px;
         }
         .horas {
             color: red;
@@ -144,13 +146,22 @@
             margin-right: 0;
             font-weight: bold;
         }
+        .series {
+            font-weight:bold;
+            color:white;
+        }
     </style>
 </head>
 <body onload="verificarCalcular()">
     <div class="content">
+      
+        <img class="ima" src="https://raw.githubusercontent.com/SuaSortehoje/placarBet/main/images%20(37).jpg" alt="Imagem">  
         <h1>BOLAO DO DIA 03/07</h1>
         <h2>O JOGO SÓ PODERÁ SER FEITO ATÉ AS <span class="horas">18:50</span></h2>
-        <img class="ima" src="https://raw.githubusercontent.com/SuaSortehoje/placarBet/main/images%20(37).jpg" alt="Imagem">
+            <div>
+           <span class="series"> SERIE A</span>
+            </div>
+        
         <div>
             <input type="text" placeholder="Nome" id="nome">
             <div>
@@ -158,7 +169,9 @@
                 <span class="casa">EMPATE</span>
                 <span class="casa">FORA</span>
             </div>
+        
             <div>
+           
                 <span class="label_cota">3.0</span>
                 <span class="label_cota1">4.0</span>
                 <span class="label_cota2">3.0</span>
@@ -254,7 +267,24 @@
                     option4.value = 'FORA';
                     option4.dataset.valor = '3';
                     option4.text = 'FORA';
-                    select.appendChild(option4);
+                   select.appendChild(option4);
+                }
+                   if (i === 1) {
+                    var option5 = document.createElement('option');
+                    option5.value = 'Ambas';
+                    option5.dataset.valor = '2';
+                    option5.text = 'AMBAS';
+                   
+                    select.appendChild(option5);
+                }
+                
+                if (i === 1) {
+                    var option6 = document.createElement('option');
+                    option6.value = 'Ambas/Marcas';
+                    option6.dataset.valor = '25';
+                    option6.text = 'AMBAS/MARCAS 1T 2T';
+                   
+                    select.appendChild(option6);
                 }
                 div.appendChild(select);
             }
@@ -314,7 +344,7 @@
             total *= valorInput;
 
             // Atualiza a exibição do total
-            document.getElementById('total_display').innerText = 'Total: R$' + total.toFixed(2);
+            document.getElementById('total_display').innerText = ' R$ ' + total.toFixed(2);
         }
 
         function countSelections() {
@@ -346,9 +376,7 @@
 Nome: ${nome}
             
                 DATA E HORA ATUAL
-  *Data: ${new Date().toLocaleDateString()}*  *Hora: ${new Date().toLocaleTimeString()}*
-        
-                     Valor A PAGAR : ${valor}\n`;
+  *Data: ${new Date().toLocaleDateString()}*  *Hora: ${new Date().toLocaleTimeString()}*`;
             
             for (var i = 1; i <= 5; i++) {  // Certifique-se de que este valor corresponda ao número de divisões criadas
                 var divClass = '.divisao' + i;
@@ -370,7 +398,9 @@ Nome: ${nome}
             
             var total = document.getElementById('total_display').innerText;
     
-            mensagem += ` A RECEBER ${total}
+   mensagem += `Valor A PAGAR : ${valor}
+    
+                A RECEBER ${total}
             
        *Nº Controle da Aposta* : *${senha}*
             
