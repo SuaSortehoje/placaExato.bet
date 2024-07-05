@@ -3,435 +3,97 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BOLAO_MULTI_JOGO</title>
-    
+      <link rel="icon" href="https://raw.githubusercontent.com/SuaSortehoje/placarBet/main/images%20(37).jpg"> 
+<meta name="url" content="https://raw.githubusercontent.com/SuaSortehoje/placarBet/main/images%20(37).jpg">
+    <title>MENU JOGO DO DIA</title>
     <style>
-        body {
-            text-align: center;
-            background: green;
-        }
-        h1 {
-            background: green;
-            color: white;
-            font-size: 18px;
-        }
-        h2 {
-            font-size: 14px;
-            font-weight: bold;
-        }
-        .ft {
-            width: 50px;
-            height: 50px;
-        }
-        .inputnomeDoTime {
-            display: none;
-            width: 20px;
-            text-align: center;
-            height: 20px;
-            border-radius: 20px;
-            font-weight: bold;
-            font-size: 18px;
-            outline: none;
-        }
-        .inputnomeDoTime:hover {
-            background: #00FF00;
-            color: black;
-        }
-        .content {
-            background-image: linear-gradient(90deg, gold, green, yellow);
-            text-align: center;
-        }
-        #valor_input {
-            width: 20%;
-            border-radius: 10px;
-            text-align: center;
-            font-weight: bold;
-            outline: none;
-            margin-left: 20px;
-            margin-top: 10px;
-            padding: 0px 10px;
-        }
-        #total_display {
-            font-weight: bold;
-            color: white;
-            margin-left: 10px;
-            padding: 0px;
-            font-size: 16px;
-            margin-top:100px;
-            background: green;
-            text-align:center;
-            border-radius:10px;
-            padding:5px 10px;
-        }
-        button {
-            border-radius: 10px;
-            margin: 1px;
-            height: 30px;
-            width: 50%;
-            outline: none;
-            cursor: pointer;
-            background: #00ff00;
-            color: black;
-            font-weight: bold;
-            font-size:14px;
-        }
-        button:hover {
-            background: #007fff;
-            color: black;
-        }
-        .btn1 {
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-            margin: 5px;
-            width: 50%;
-            margin-left: 90px;
-            background: teal;
-            color: white;
-            font-weight: bold;
-        }
-        .btn1:focus {
-            background: #00ff00;
-            color: black;
-        }
-        #nome {
-            border-radius: 10px;
-            text-align: center;
-            margin-bottom: 10px;
-        }
-        .proximo {
-            text-align: center;
-            margin-top: 20px;
-        }
-        .ima {
-            width: 100%;
-            height: 70px;
-        }
-        .horas {
-            color: red;
-            font-weight: bold;
-        }
-        .premioInput {
-            width: 60%;
-            border-radius: 10px;
-            font-weight: bold;
-            color: white;
-            background: blue;
-            text-align: center;
-        }
-        .casa {
-            margin-right: 20px;
-        }
-        .label_cota {
-            margin-right: 40px;
-            font-weight: bold;
-        }
-        .valores_contas {
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-            text-align: center;
-        }
-        .escolhar {
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-            text-align: center;
-        }
-        .label_cota1 {
-            margin-right: 40px;
-            font-weight: bold;
-        }
-        .label_cota2 {
-            margin-right: 0;
-            font-weight: bold;
-        }
-        .series {
-            font-weight:bold;
-            color:white;
-        }
-    </style>
-</head>
-<body onload="verificarCalcular()">
-    <div class="content">
+    *{
+        padding:0;
+        border-size:0;
+    }
+    body {
+        background:green;
+        text-align:center;
       
-        <img class="ima" src="https://raw.githubusercontent.com/SuaSortehoje/placarBet/main/images%20(37).jpg" alt="Imagem">  
-        <h1>BOLAO DO DIA 03/07</h1>
-        <h2>O JOGO SÓ PODERÁ SER FEITO ATÉ AS <span class="horas">18:50</span></h2>
-            <div>
-           <span class="series"> SERIE A</span>
-            </div>
-        
-        <div>
-            <input type="text" placeholder="Nome" id="nome">
-            <div>
-                <span class="casa">CASA</span>
-                <span class="casa">EMPATE</span>
-                <span class="casa">FORA</span>
-            </div>
-        
-            <div>
-           
-                <span class="label_cota">3.0</span>
-                <span class="label_cota1">4.0</span>
-                <span class="label_cota2">3.0</span>
-            </div><br>
-            <div>
-                <span id="total_display">Total: R$0,00</span>
-            </div>
-        </div>
-        
-        <!-- Divisões geradas via JavaScript -->
-        <div id="divisions-container"></div>
+    }
+    .btn_button1{
+        width:18%;
+        margin:1px;
+          font-weight:bold;
+          border-radius:10px;
+    }
+    span {
+        color:red;
+        font-weight:bold;
+    }
+    </style>
+  </head>
+  <h2>MENU JOGO DO DIA<h2>
+   <a href="placarExato.bet_01.html">
+  <button class="btn_button1">placarExato.bet dia <span> 01</span> </button></a>
+   <a href="placarExato.bet_02.html">
+   <button class="btn_button1">placarExato.bet dia <span> 02</span> </button></a>
+   <a href="placarExato.bet_03.html">
+   <button class="btn_button1">placarExato.bet dia <span> 03</span> </button></a> 
+   <a href="placarExato.bet_04.html">
+   <button class="btn_button1">placarExato.bet dia <span> 04</span> </button></a>
+    <a href="placarExato.bet_05.html">
+   <button class="btn_button1">placarExato.bet dia <span> 05</span> </button></a>
+      <a href="placarExato.bet_06.html">
+  <button class="btn_button1">placarExato.bet dia <span> 06</span> </button></a>
+   <a href="placarExato.bet_07.html">
+   <button class="btn_button1">placarExato.bet dia <span> 07</span> </button></a>
+   <a href="placarExato.bet_08.html">
+   <button class="btn_button1">placarExato.bet dia <span> 08</span> </button></a> 
+   <a href="placarExato.bet_09.html">
+   <button class="btn_button1">placarExato.bet dia <span> 09</span> </button></a>
+    <a href="placarExato.bet_10.html">
+   <button class="btn_button1">placarExato.bet dia <span> 10</span> </button></a>
+   
+      <a href="placarExato.bet_11.html">
+  <button class="btn_button1">placarExato.bet dia <span> 11</span> </button></a>
+   <a href="placarExato.bet_12.html">
+   <button class="btn_button1">placarExato.bet dia <span> 12</span> </button></a>
+   <a href="placarExato.bet_13.html">
+   <button class="btn_button1">placarExato.bet dia <span> 13</span> </button></a> 
+   <a href="placarExato.bet_14.html">
+   <button class="btn_button1">placarExato.bet dia <span> 14</span> </button></a>
+    <a href="placarExato.bet_15.html">
+   <button class="btn_button1">placarExato.bet dia <span> 15</span> </button></a>
+      <a href="placarExato.bet_16.html">
+  <button class="btn_button1">placarExato.bet dia <span> 16</span> </button></a>
+   <a href="placarExato.bet_17.html">
+   <button class="btn_button1">placarExato.bet dia <span> 17</span> </button></a>
+   <a href="placarExato.bet_18.html">
+   <button class="btn_button1">placarExato.bet dia <span> 18</span> </button></a> 
+   <a href="placarExato.bet_19.html">
+   <button class="btn_button1">placarExato.bet dia <span> 19</span> </button></a>
+    <a href="placarExato.bet_20.html">
+   <button class="btn_button1">placarExato.bet dia <span> 20</span> </button></a>
+   
+   
+      <a href="placarExato.bet_21.html">
+  <button class="btn_button1">placarExato.bet dia <span> 21</span> </button></a>
+   <a href="placarExato.bet_22.html">
+   <button class="btn_button1">placarExato.bet dia <span> 22</span> </button></a>
+   <a href="placarExato.bet_23.html">
+   <button class="btn_button1">placarExato.bet dia <span> 23</span> </button></a> 
+   <a href="placarExato.bet_24.html">
+   <button class="btn_button1">placarExato.bet dia <span> 24</span> </button></a>
+    <a href="placarExato.bet_25.html">
+   <button class="btn_button1">placarExato.bet dia <span> 25</span> </button></a>
+      <a href="placarExato.bet_26.html">
+  <button class="btn_button1">placarExato.bet dia <span> 26</span> </button></a>
+   <a href="placarExato.bet_27.html">
+   <button class="btn_button1">placarExato.bet dia <span> 27</span> </button></a>
+   <a href="placarExato.bet_28.html">
+   <button class="btn_button1">placarExato.bet dia <span> 28</span> </button></a> 
+   <a href="placarExato.bet_29.html">
+   <button class="btn_button1">placarExato.bet dia <span> 29</span> </button></a>
+    <a href="placarExato.bet_30.html">
+   <button class="btn_button1">placarExato.bet dia <span> 30</span> </button></a>
+      <a href="placarExato.bet_31.html">
+  <button class="btn_button1">placarExato.bet dia <span> 31</span> </button></a>
 
-        <div>
-        <input type="number" id="valor_input" placeholder="Valor" value="1" oninput="updateTotal()">
-    </div>
-        <br>
-        
-        <button onclick="solicitarCodigo()">ENVIAR</button>
-
-        <script>
-        // Arrays de URLs das imagens para CASA e FORA
-        var imgCasaURLs = [
-            "https://raw.githubusercontent.com/SuaSortehoje/placarBet/main/cuiaba.png",
-            "https://raw.githubusercontent.com/SuaSortehoje/placarBet/main/vasco.png",
-            "https://raw.githubusercontent.com/SuaSortehoje/placarBet/main/criciuma.png",
-            "https://raw.githubusercontent.com/SuaSortehoje/placarBet/main/athletico-pr.png",
-            "https://raw.githubusercontent.com/SuaSortehoje/placarBet/main/atletico-mg.png"
-        ];
-        
-        var imgForaURLs = [
-            "https://raw.githubusercontent.com/SuaSortehoje/placarBet/main/botafogo.jpeg",
-            "https://raw.githubusercontent.com/SuaSortehoje/placarBet/main/fortaleza.png",
-            "https://raw.githubusercontent.com/SuaSortehoje/placarBet/main/cruzeiro.png",
-            "https://raw.githubusercontent.com/SuaSortehoje/placarBet/main/Sao-Paulo-1.png",
-            "https://raw.githubusercontent.com/SuaSortehoje/placarBet/main/flamengo.png"
-        ];
-        
-        const validCodes = ['563bcdf', '57300bt', '72736b1', '827c62u', 'yeg6bet', '1234', '0000'];
-
-        function solicitarCodigo() {
-            const codigo = prompt("Por favor, solicite o código ao cambista:");
-            if (validCodes.includes(codigo)) {
-                enviarMensagemParaWhatsapp();
-            } else {
-                alert("Código inválido. Por favor, tente novamente.");
-            }
-        }
-
-        function criarDivisao(numero) {
-            var div = document.createElement('div');
-            div.className = 'divisao' + numero;
-            
-            // Seleciona a imagem com base no índice do número
-            var imgCasa = document.createElement('img');
-            imgCasa.src = imgCasaURLs[numero % imgCasaURLs.length];
-            imgCasa.className = 'ft';
-            imgCasa.alt = "Imagem Casa";
-            imgCasa.onclick = function() {
-                var imgName = imgCasa.src.substring(imgCasa.src.lastIndexOf('/') + 1, imgCasa.src.lastIndexOf('.'));
-                alert("Time da Casa: " + imgName);
-            };
-            div.appendChild(imgCasa);
-            
-            for (var i = 1; i <= 1; i++) {
-                var select = document.createElement('select');
-                select.className = 'premioInput';
-                select.id = 'div' + numero + '-select' + i;
-                select.onchange = function() { updateSelection(this, 'divisao' + numero); };
-                
-                var option1 = document.createElement('option');
-                option1.value = 'opcao';
-                option1.text = 'opcao';
-                select.appendChild(option1);
-                
-                if (i === 1) {
-                    var option2 = document.createElement('option');
-                    option2.value = 'CASA';
-                    option2.dataset.valor = '3';
-                    option2.text = 'CASA';
-                    select.appendChild(option2);
-                }
-                
-                if (i === 1) {
-                    var option3 = document.createElement('option');
-                    option3.value = 'EMPATE';
-                    option3.dataset.valor = '4';
-                    option3.text = 'EMPATE';
-                    select.appendChild(option3);
-                }
-                
-                if (i === 1) {
-                    var option4 = document.createElement('option');
-                    option4.value = 'FORA';
-                    option4.dataset.valor = '3';
-                    option4.text = 'FORA';
-                   select.appendChild(option4);
-                }
-                   if (i === 1) {
-                    var option5 = document.createElement('option');
-                    option5.value = 'Ambas';
-                    option5.dataset.valor = '2';
-                    option5.text = 'AMBAS';
-                   
-                    select.appendChild(option5);
-                }
-                
-                if (i === 1) {
-                    var option6 = document.createElement('option');
-                    option6.value = 'Ambas/Marcas';
-                    option6.dataset.valor = '25';
-                    option6.text = 'AMBAS/MARCAS 1T 2T';
-                   
-                    select.appendChild(option6);
-                }
-                div.appendChild(select);
-            }
-            
-            var imgFora = document.createElement('img');
-            imgFora.src = imgForaURLs[numero % imgForaURLs.length];
-            imgFora.className = 'ft';
-            imgFora.alt = "Imagem Fora";
-            imgFora.onclick = function() {
-                var imgName = imgFora.src.substring(imgFora.src.lastIndexOf('/') + 1, imgFora.src.lastIndexOf('.'));
-                alert("Time de Fora: " + imgName);
-            };
-            div.appendChild(imgFora);
-            
-            // Adiciona duas quebras de linha
-            div.appendChild(document.createElement('br'));
-            div.appendChild(document.createElement('br'));
-            
-            return div;
-        }
-
-        function updateSelection(selected, divClass) {
-            // Desativa as opções dos outros selects dentro da mesma div
-            var selects = document.querySelectorAll(`.${divClass} select.premioInput`);
-            selects.forEach(function(select) {
-                if (select !== selected) {
-                    select.value = 'opcao'; // Reseta para a opção padrão
-                }
-            });
-
-            updateTotal(); // Recalcula o total ao atualizar a seleção
-        }
-
-        function gerarDivisoes() {
-            var container = document.getElementById('divisions-container');
-            for (var i = 1; i <= 5; i++) {
-                container.appendChild(criarDivisao(i));
-            }
-        }
-
-        function updateTotal() {
-            var valorInput = parseFloat(document.getElementById('valor_input').value) || 0;
-            var total = 0;
-
-            for (var i = 1; i <= 5; i++) {  // Certifique-se de que este valor corresponda ao número de divisões criadas
-                var divClass = 'divisao' + i;
-                var selectedOption = document.querySelector('.' + divClass + ' select option:checked');
-                if (selectedOption && selectedOption.value !== 'opcao') {
-                    total += parseFloat(selectedOption.dataset.valor);
-                }
-            }
-
-            // Multiplica o total pelo número de seleções
-            total *= countSelections();
-
-            // Multiplica o total pelo valor do input
-            total *= valorInput;
-
-            // Atualiza a exibição do total
-            document.getElementById('total_display').innerText = ' R$ ' + total.toFixed(2);
-        }
-
-        function countSelections() {
-            var count = 0;
-            var selects = document.querySelectorAll('select');
-            selects.forEach(function(select) {
-                if (select.value !== 'opcao') {
-                    count++;
-                }
-            });
-            return count;
-        }
-
-        let linktitulo = "https://placar-exato4.webnode.page/bolabet/";
-
-        const senha = Math.floor(100000 + Math.random() * 900000);
-
-        const responsabilidade = "É de responsabilidade do apostador conferir sua pule antes do jogo";
-        var titulos = "BOLAO_MULTI_JOGO";
-                    
-        function enviarMensagemParaWhatsapp() {
-            var nome = document.getElementById('nome').value;
-            var valor = document.getElementById('valor_input').value;
-            
-               var mensagem = `${linktitulo}
-                            
-                     *${titulos}*
-
-Nome: ${nome}
-            
-                DATA E HORA ATUAL
-  *Data: ${new Date().toLocaleDateString()}*  *Hora: ${new Date().toLocaleTimeString()}*`;
-            
-            for (var i = 1; i <= 5; i++) {  // Certifique-se de que este valor corresponda ao número de divisões criadas
-                var divClass = '.divisao' + i;
-                var selectedOption = document.querySelector(divClass + ' select.premioInput option:checked');
-                if (selectedOption && selectedOption.value !== 'opcao') {
-                  
-                    var imgCasaSrc = document.querySelector(divClass + ' img[alt="Imagem Casa"]').src;
-                   
-                    var imgForaSrc = document.querySelector(divClass + ' img[alt="Imagem Fora"]').src;
-                    
-                    var imgCasaName = imgCasaSrc.substring(imgCasaSrc.lastIndexOf('/') + 1, imgCasaSrc.lastIndexOf('.'));
-                   
-                    var imgForaName = imgForaSrc.substring(imgForaSrc.lastIndexOf('/') + 1, imgForaSrc.lastIndexOf('.'));
-                    
-                    var opcaoSelecionada = selectedOption.value;
-                           mensagem += `               ${i}  *${imgCasaName}* VS *${imgForaName}* \n Opção Selecionada: *${opcaoSelecionada}* \n\n`;
-                }
-            }
-            
-            var total = document.getElementById('total_display').innerText;
-    
-   mensagem += `Valor A PAGAR : ${valor}
-    
-                A RECEBER ${total}
-            
-       *Nº Controle da Aposta* : *${senha}*
-            
-*${responsabilidade}*`;
-            
-            var url = `https://api.whatsapp.com/send?phone=5571992290058&text=${encodeURIComponent(mensagem)}`;
-            console.log(url); // Adicionado para depuração
-            window.open(url, '_blank');
-        }
-
-        function verificarCalcular() {
-            gerarDivisoes();
-            updateTotal();
-            verificarHorario(); // Adiciona verificação de horário ao carregar a página
-        }
-
-        function verificarHorario() {
-            var dataLimite = new Date('2024-07-03T18:50:00'); // Data limite para as apostas
-            var dataAtual = new Date();
-
-            if (dataAtual > dataLimite) {
-                var selects = document.querySelectorAll('select, #valor_input');
-                selects.forEach(function(select) {
-                    select.disabled = true;
-                });
-                var btnEnviar = document.querySelector('button');
-                btnEnviar.disabled = true;
-                alert('A data limite para enviar os palpites já passou.');
-            }
-        }
-        </script>
-    </div>
-</body>
+    </body>
 </html>
