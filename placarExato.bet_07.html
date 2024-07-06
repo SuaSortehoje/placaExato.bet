@@ -4,7 +4,7 @@
     <link rel="icon" href="https://raw.githubusercontent.com/SuaSortehoje/placarBet/main/multijogo.jpg" type="image/jpeg">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <link rel="icon" href="https://raw.githubusercontent.com/SuaSortehoje/placarBet/main/multijogo.jpg" type="image/x-icon"> 
+    <link rel="icon" href="https://raw.githubusercontent.com/SuaSortehoje/placarBet/main/apostaMulti.jpg" type="image/x-icon"> 
     <meta name="url" content="https://raw.githubusercontent.com/SuaSortehoje/placarBet/main/apostaMulti.jpg"> 
     <title>APOSTA⚽GREEN</title>
 </head>
@@ -12,6 +12,7 @@
     <div style="background-image: linear-gradient(90deg, gold, green, yellow); text-align: center;">
         <img class="ima" src="https://raw.githubusercontent.com/SuaSortehoje/placarBet/main/multijogo.jpg" alt="Imagem" style="width: 100%; height: 70px;">
         <h1 style="background: green; color: white; font-size: 15px; border-radius: 10px;">GREEN DO DIA 07/07</h1>
+    
         <input type="text" placeholder="Nome" id="nome" style="border-radius: 10px; text-align: center; margin-bottom: 10px;">
         
         <!-- Séries -->
@@ -34,7 +35,7 @@
     <script>
         // Arrays com as imagens das séries
         var imgCasaSerieA = [
-             "https://raw.githubusercontent.com/SuaSortehoje/placarBet/main/cruzeiro.png",
+            "https://raw.githubusercontent.com/SuaSortehoje/placarBet/main/cruzeiro.png",
             "https://raw.githubusercontent.com/SuaSortehoje/placarBet/main/juventude.png",
             "https://raw.githubusercontent.com/SuaSortehoje/placarBet/main/fortaleza.png",
             "https://raw.githubusercontent.com/SuaSortehoje/placarBet/main/internacional.png",
@@ -84,97 +85,118 @@
             }
         }
 
-        function criarDivisao(imgCasa, imgFora, nomeCasa, nomeFora, horarioLimite) {
-            var division = document.createElement("div");
-            division.style.display = "flex";
-            division.style.alignItems = "center";
-            division.style.justifyContent = "center";
-            division.style.marginBottom = "10px";
+       function criarDivisao(imgCasa, imgFora, nomeCasa, nomeFora, horarioLimite) {
+    var division = document.createElement("div");
+    division.style.display = "flex";
+    division.style.alignItems = "center";
+    division.style.justifyContent = "center";
+    division.style.flexDirection = "column"; // Organiza verticalmente
 
-            var imgCasaElement = document.createElement("img");
-            imgCasaElement.src = imgCasa;
-            imgCasaElement.style.width = "50px";
-            imgCasaElement.style.height = "50px";
-            imgCasaElement.alt = "Imagem Casa";
-            division.appendChild(imgCasaElement);
+    // Container para as imagens e select
+    var contentContainer = document.createElement("div");
+    contentContainer.style.display = "flex";
+    contentContainer.style.alignItems = "center"; // Alinha verticalmente
+    contentContainer.style.justifyContent = "center"; // Centraliza
 
-            var select = document.createElement("select");
-            select.style.width = "60%";
-            select.style.borderRadius = "10px";
-            select.style.fontWeight = "bold";
-            select.style.color = "white";
-            select.style.background = "blue";
-            select.style.textAlign = "center";
-            select.style.marginLeft = "10px";
-            select.classList.add("premioInput");
-            select.addEventListener("change", updateTotal);
+    var imgCasaElement = document.createElement("img");
+    imgCasaElement.src = imgCasa;
+    imgCasaElement.style.width = "50px";
+    imgCasaElement.style.height = "50px";
+    imgCasaElement.alt = "Imagem Casa";
+    contentContainer.appendChild(imgCasaElement);
 
-            // Verifica o horário limite
-            var dataLimite = new Date(horarioLimite);
-            var dataAtual = new Date();
-            if (dataAtual > dataLimite) {
-                select.disabled = true;
-            }
+    var selectContainer = document.createElement("div");
+    selectContainer.style.display = "flex";
+    selectContainer.style.flexDirection = "column"; // Organiza verticalmente
+    selectContainer.style.alignItems = "center";
+    selectContainer.style.margin = "0 10px"; // Margem entre a imagem e o select
 
-            var optionDefault = document.createElement("option");
-            optionDefault.value = "opcao";
-            optionDefault.textContent = `${nomeCasa} vs ${nomeFora}`;
-            select.appendChild(optionDefault);
+    // Texto de data e hora limite
+    var dataHoraLimite = document.createElement("div");
+    dataHoraLimite.textContent = `Limite: ${new Date(horarioLimite).toLocaleString()}`;
+    dataHoraLimite.style.fontSize = "12px"; // Ajuste o tamanho da fonte conforme necessário
+    dataHoraLimite.style.marginBottom = "5px"; // Ajuste o espaçamento conforme necessário
+    selectContainer.appendChild(dataHoraLimite);
 
-            var optionCasa = document.createElement("option");
-            optionCasa.value = "casa";
-            optionCasa.dataset.valor = "3";
-            optionCasa.textContent = `Casa (3.00)`;
-            select.appendChild(optionCasa);
+    var select = document.createElement("select");
+    select.style.width = "100%"; // Ocupa toda a largura do container
+    select.style.borderRadius = "10px";
+    select.style.fontWeight = "bold";
+    select.style.color = "white";
+    select.style.background = "blue";
+    select.style.textAlign = "center";
+    select.classList.add("premioInput");
+    select.addEventListener("change", updateTotal);
 
-            var optionEmpate = document.createElement("option");
-            optionEmpate.value = "EMPATE";
-            optionEmpate.dataset.valor = "4.00";
-            optionEmpate.textContent = `EMPATE (4.00)`;
-            select.appendChild(optionEmpate);
+    // Verifica o horário limite
+    var dataLimite = new Date(horarioLimite);
+    var dataAtual = new Date();
+    if (dataAtual > dataLimite) {
+        select.disabled = true;
+    }
 
-            var optionFora = document.createElement("option");
-            optionFora.value = "FORA";
-            optionFora.dataset.valor = "3.00";
-            optionFora.textContent = `Fora (3.00)`;
-            select.appendChild(optionFora);
+    // Opções do select
+    var optionDefault = document.createElement("option");
+    optionDefault.value = "opcao";
+    optionDefault.textContent = `${nomeCasa} vs ${nomeFora}`;
+    select.appendChild(optionDefault);
 
-            var option4 = document.createElement("option");
-            option4.value = "AMBOS FAZ GOL";
-            option4.dataset.valor = "2";
-            option4.textContent = "AMBOS FAZ GOL (2.0)";
-            select.appendChild(option4);
+    var optionCasa = document.createElement("option");
+    optionCasa.value = "casa";
+    optionCasa.dataset.valor = "3";
+    optionCasa.textContent = `Casa (3.00)`;
+    select.appendChild(optionCasa);
 
-            var option5 = document.createElement("option");
-            option5.value = "ACIMA DE 2.5";
-            option5.dataset.valor = "3.00";
-            option5.textContent = "ACIMA DE 2.5 (3.00)";
-            select.appendChild(option5);
+    var optionEmpate = document.createElement("option");
+    optionEmpate.value = "EMPATE";
+    optionEmpate.dataset.valor = "4.00";
+    optionEmpate.textContent = `EMPATE (4.00)`;
+    select.appendChild(optionEmpate);
 
-            var option6 = document.createElement("option");
-            option6.value = "ABAIXO DE 2.5";
-            option6.dataset.valor = "2.00";
-            option6.textContent = "ABAIXO DE 2.5 (2.00)";
-            select.appendChild(option6);
-             
-             var option7 = document.createElement("option");
-            option7.value = "AMBAS/MARCAS 1T e 2T";
-            option7.dataset.valor = "25";
-            option7.textContent = "AMBAS/MARCAS 1T e 2T (25)";
-            select.appendChild(option7);
-            
-            division.appendChild(select);
+    var optionFora = document.createElement("option");
+    optionFora.value = "FORA";
+    optionFora.dataset.valor = "3.00";
+    optionFora.textContent = `Fora (3.00)`;
+    select.appendChild(optionFora);
 
-            var imgForaElement = document.createElement("img");
-            imgForaElement.src = imgFora;
-            imgForaElement.style.width = "50px";
-            imgForaElement.style.height = "50px";
-            imgForaElement.alt = "Imagem Fora";
-            imgForaElement.style.marginLeft = "10px";
-            division.appendChild(imgForaElement);
+    var option4 = document.createElement("option");
+    option4.value = "AMBOS FAZ GOL";
+    option4.dataset.valor = "2";
+    option4.textContent = "AMBOS FAZ GOL (2.0)";
+    select.appendChild(option4);
 
-            return division;
-        }
+    var option5 = document.createElement("option");
+    option5.value = "ACIMA DE 2.5";
+    option5.dataset.valor = "3.00";
+    option5.textContent = "ACIMA DE 2.5 (3.00)";
+    select.appendChild(option5);
+
+    var option6 = document.createElement("option");
+    option6.value = "ABAIXO DE 2.5";
+    option6.dataset.valor = "2.00";
+    option6.textContent = "ABAIXO DE 2.5 (2.00)";
+    select.appendChild(option6);
+
+    var option7 = document.createElement("option");
+    option7.value = "AMBAS/MARCAS 1T e 2T";
+    option7.dataset.valor = "25";
+    option7.textContent = "AMBAS/MARCAS 1T e 2T (25)";
+    select.appendChild(option7);
+
+    selectContainer.appendChild(select);
+    contentContainer.appendChild(selectContainer);
+
+    var imgForaElement = document.createElement("img");
+    imgForaElement.src = imgFora;
+    imgForaElement.style.width = "50px";
+    imgForaElement.style.height = "50px";
+    imgForaElement.alt = "Imagem Fora";
+    contentContainer.appendChild(imgForaElement);
+
+    division.appendChild(contentContainer);
+
+    return division;
+}
 
         function extrairNomeTime(imgSrc) {
             var partes = imgSrc.split("/");
@@ -202,22 +224,29 @@
                 '2024-07-07T16:00:00',
                 '2024-07-07T18:00:00',
                 '2024-07-07T18:30:00',
+                
                 '2024-07-07T18:30:00',
                 '2024-07-07T18:30:00',
-                '2024-07-07T18:30:00',
-                '2024-07-03T18:30:00',
+                '2024-07-07T20:30:00',
+                '2024-07-07T16:00:00',
+                '2024-07-07T16:00:00',
             ]);
         }
 
         function gerarDivisoesSerieB() {
-            gerarDivisoes('B', 'divisions-container-b', imgCasaSerieB, imgForaSerieB, [
-                '2024-07-07T11:50:00',
+            gerarDivisoes('B', 'divisions-container-b', imgCasaSerieB, imgForaSerieB, [  
+                '2024-07-07T11:00:00',
+                '2024-07-08T11:00:00',
                 '2024-07-07T16:00:00',
                 '2024-07-07T18:30:00',
-                '2024-07-03T16:50:00',
-                '2024-07-03T16:50:00',
-                '2024-07-03T16:50:00',
-                '2024-07-06T16:50:00',
+                '2024-07-07T16:00:00',
+               
+                '2024-07-07T16:00:00',
+                '2024-07-07T16:00:00',
+                '2024-07-07T16:00:00',
+                '2024-07-07T16:00:00',
+                '2024-07-07T16:00:00',
+               
             ]);
         }
 
@@ -275,12 +304,10 @@ var linhaB = "-------------SERIE B---------------";
     var valor = document.getElementById('valor_input').value;
 
     var mensagem = `${linktitilo}
-          DATA E HORA ATUAL
+              DATA E HORA ATUAL
 *Data: ${new Date().toLocaleDateString()}*  *Hora: ${new Date().toLocaleTimeString()}*\n
 
-*Nome: ${nome}*\n`;
-
-               
+*Nome: ${nome}*\n`;          
 
     // Captura das seleções da Série A
     var selectsA = document.querySelectorAll('#divisions-container-a select.premioInput');
@@ -298,8 +325,6 @@ var linhaB = "-------------SERIE B---------------";
             } else {
                 tipoAposta = 'FORA'; // Se não for nenhum dos valores específicos, assume 'FORA'
             }
-
-
 
             mensagem += `\n       *${linhaA}*    \n               *${nomeCasa}*  vs  *${nomeFora}*\n                    ${tipoAposta}\n`;
         }
@@ -354,18 +379,30 @@ var linhaB = "-------------SERIE B---------------";
         }
 
         function verificarCalcular() {
-            var dataLimite = new Date('2024-07-07T22:50:00');
-            var dataAtual = new Date();
-            if (dataAtual > dataLimite) {
-                var selects = document.querySelectorAll('.premioInput');
-                selects.forEach(function(select) {
-                    select.disabled = true;
-                });
+    var dataLimite = new Date('2024-07-08T22:50:00');
+    var dataAtual = new Date();
+    
+    // Desativa os selects se a data atual for maior que a data limite
+    if (dataAtual > dataLimite) {
+        var selects = document.querySelectorAll('.premioInput');
+        selects.forEach(function(select) {
+            select.disabled = true;
+            // Mantém a opção selecionada visível
+            if (select.value !== 'opcao') {
+                var selectedOption = select.options[select.selectedIndex];
+                var selectedText = selectedOption.textContent;
+                select.innerHTML = ''; // Limpa as opções
+                select.appendChild(selectedOption); // Adiciona a opção selecionada de volta
+                select.innerHTML = selectedText;
             }
-            gerarDivisoesSerieA();
-            gerarDivisoesSerieB();
-            updateTotal();
-        }
+        });
+    }
+    
+    gerarDivisoesSerieA();
+    gerarDivisoesSerieB();
+    updateTotal();
+}
+
     </script>
 </body>
 </html>
