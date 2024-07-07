@@ -109,7 +109,7 @@
     selectContainer.style.display = "flex";
     selectContainer.style.flexDirection = "column"; // Organiza verticalmente
     selectContainer.style.alignItems = "center";
-    selectContainer.style.margin = "0 10px"; // Margem entre a imagem e o select
+    selectContainer.style.margin = " 10px"; // Margem entre a imagem e o select
 
     // Texto de data e hora limite
     var dataHoraLimite = document.createElement("div");
@@ -227,7 +227,7 @@
                 
                 '2024-07-07T18:30:00',
                 '2024-07-07T18:30:00',
-                '2024-07-07T20:30:00',
+                '2024-07-07T20:00:00',
                 '2024-07-07T16:00:00',
                 '2024-07-07T16:00:00',
             ]);
@@ -299,68 +299,7 @@ var linhaA = "-------------SERIE A---------------";
 
 var linhaB = "-------------SERIE B---------------";
 
-        function enviarMensagemParaWhatsapp() {
-    var nome = document.getElementById('nome').value;
-    var valor = document.getElementById('valor_input').value;
-
-    var mensagem = `${linktitilo}
-              DATA E HORA ATUAL
-*Data: ${new Date().toLocaleDateString()}*  *Hora: ${new Date().toLocaleTimeString()}*\n
-
-*Nome: ${nome}*\n`;          
-
-    // Captura das seleções da Série A
-    var selectsA = document.querySelectorAll('#divisions-container-a select.premioInput');
-    selectsA.forEach(function(select, index) {
-        if (select.value !== 'opcao') {
-            var imgCasaUrl = select.parentNode.querySelector('img:first-of-type').src;
-            var imgForaUrl = select.parentNode.querySelector('img:last-of-type').src;
-            var nomeCasa = extrairNomeTime(imgCasaUrl);
-            var nomeFora = extrairNomeTime(imgForaUrl);
-
-            // Determina o tipo de aposta
-            var tipoAposta;
-            if (select.value === 'casa' || select.value === 'FORA' || select.value === 'EMPATE' || select.value === 'AMBOS FAZ GOL' || select.value === 'ACIMA DE 2.5' || select.value === 'ABAIXO DE 2.5' || select.value === 'AMBOS/MARCAS 1T E 2T') {
-                tipoAposta = select.value.toUpperCase();
-            } else {
-                tipoAposta = 'FORA'; // Se não for nenhum dos valores específicos, assume 'FORA'
-            }
-
-            mensagem += `\n       *${linhaA}*    \n               *${nomeCasa}*  vs  *${nomeFora}*\n                    ${tipoAposta}\n`;
-        }
-    });
-
-    // Captura das seleções da Série B
-    var selectsB = document.querySelectorAll('#divisions-container-b select.premioInput');
-    selectsB.forEach(function(select, index) {
-        if (select.value !== 'opcao') {
-            var imgCasaUrl = select.parentNode.querySelector('img:first-of-type').src;
-            var imgForaUrl = select.parentNode.querySelector('img:last-of-type').src;
-            var nomeCasa = extrairNomeTime(imgCasaUrl);
-            var nomeFora = extrairNomeTime(imgForaUrl);
-
-            // Determina o tipo de aposta
-            var tipoAposta;
-            if (select.value === 'casa' || select.value === 'FORA' || select.value === 'EMPATE' || select.value === 'AMBOS FAZ GOL' || select.value === 'ACIMA DE 2.5' || select.value === 'ABAIXO DE 2.5' || select.value === 'AMBOS/MARCAS 1T E 2T') {
-                tipoAposta = select.value.toUpperCase();
-            } else {
-                tipoAposta = 'FORA'; // Se não for nenhum dos valores específicos, assume 'FORA'
-            }
-
-            mensagem += `\n       *${linhaB}*    \n               *${nomeCasa}*  vs  *${nomeFora}*\n                  ${tipoAposta}\n`;
-        }
-    });
-
-    var total = document.getElementById('total_display').innerText;
-    mensagem += `\n              Valor A PAGAR: R$ *${valor}* \n`;
-    mensagem += `\nTotal a RECEBER: *${total}*\n`;
-
-    var url = `https://api.whatsapp.com/send?phone=5571992290058&text=${encodeURIComponent(mensagem)}`;
-    console.log("URL gerado:", url); // Adicionado para depuração
-
-    // Abrir o link em uma nova aba
-    window.open(url, '_blank');
-}
+        
 
 
         function validarEntradas() {
@@ -381,27 +320,89 @@ var linhaB = "-------------SERIE B---------------";
         function verificarCalcular() {
     var dataLimite = new Date('2024-07-08T22:50:00');
     var dataAtual = new Date();
-    
-    // Desativa os selects se a data atual for maior que a data limite
+    var selects = document.querySelectorAll('.premioInput');
+
+    // Verifica se a data atual é maior que a data limite
     if (dataAtual > dataLimite) {
-        var selects = document.querySelectorAll('.premioInput');
         selects.forEach(function(select) {
-            select.disabled = true;
-            // Mantém a opção selecionada visível
-            if (select.value !== 'opcao') {
-                var selectedOption = select.options[select.selectedIndex];
-                var selectedText = selectedOption.textContent;
-                select.innerHTML = ''; // Limpa as opções
-                select.appendChild(selectedOption); // Adiciona a opção selecionada de volta
-                select.innerHTML = selectedText;
-            }
+            select.disabled = true; // Desabilita os selects se a data limite foi ultrapassada
+        });
+    } else {
+        selects.forEach(function(select) {
+            select.disabled = false; // Habilita os selects se ainda não passou da data limite
         });
     }
-    
+
     gerarDivisoesSerieA();
     gerarDivisoesSerieB();
     updateTotal();
 }
+
+function enviarMensagemParaWhatsapp() {
+    var nome = document.getElementById('nome').value;
+    var valor = document.getElementById('valor_input').value;
+    var mensagem = `${linktitilo}
+        DATA E HORA ATUAL
+        *Data: ${new Date().toLocaleDateString()}*  *Hora: ${new Date().toLocaleTimeString()}*\n
+        *Nome: ${nome}*\n`;
+
+    // Captura das seleções da Série A
+    var selectsA = document.querySelectorAll('#divisions-container-a select.premioInput');
+    selectsA.forEach(function(select) {
+        if (select.value !== 'opcao') {
+            var imgCasaUrl = select.parentNode.parentNode.querySelector('img:first-of-type').src; // Modificado para procurar a imagem correta
+            var imgForaUrl = select.parentNode.parentNode.querySelector('img:last-of-type').src; // Modificado para procurar a imagem correta
+            var nomeCasa = extrairNomeTime(imgCasaUrl);
+            var nomeFora = extrairNomeTime(imgForaUrl);
+
+            // Determina o tipo de aposta
+            var tipoAposta = select.value.toUpperCase();
+
+            mensagem += `\n       *${linhaA}*    \n               *${nomeCasa}*  vs  *${nomeFora}*\n                    ${tipoAposta}\n`;
+        }
+    });
+
+    // Captura das seleções da Série B
+    var selectsB = document.querySelectorAll('#divisions-container-b select.premioInput');
+    selectsB.forEach(function(select) {
+        if (select.value !== 'opcao') {
+            var imgCasaUrl = select.parentNode.parentNode.querySelector('img:first-of-type').src; // Modificado para procurar a imagem correta
+            var imgForaUrl = select.parentNode.parentNode.querySelector('img:last-of-type').src; // Modificado para procurar a imagem correta
+            var nomeCasa = extrairNomeTime(imgCasaUrl);
+            var nomeFora = extrairNomeTime(imgForaUrl);
+
+            // Determina o tipo de aposta
+            var tipoAposta = select.value.toUpperCase();
+
+            mensagem += `\n       *${linhaB}*    \n               *${nomeCasa}*  vs  *${nomeFora}*\n                    ${tipoAposta}\n`;
+        }
+    });
+
+    mensagem += `\n              Valor A PAGAR: R$ *${valor}* \n`;
+
+    var total = document.getElementById('total_display').innerText;
+    mensagem += `\nTotal a RECEBER: *${total}*\n`;
+
+    var url = `https://api.whatsapp.com/send?phone=5571992290058&text=${encodeURIComponent(mensagem)}`;
+    console.log("URL gerado:", url); // Adicionado para depuração
+
+    // Abrir o link em uma nova aba
+    window.open(url, '_blank');
+}
+
+// Função para validar as entradas antes de enviar para WhatsApp
+function solicitarCodigo() {
+    const codigo = prompt("Digite o código para continuar:");
+
+    if (validCodes.includes(codigo)) {
+        alert("Código válido! Você pode continuar.");
+        enviarMensagemParaWhatsapp();
+    } else {
+        alert("Código inválido. Tente novamente.");
+        solicitarCodigo();
+    }
+}
+
 
     </script>
 </body>
