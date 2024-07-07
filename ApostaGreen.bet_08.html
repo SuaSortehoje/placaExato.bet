@@ -267,47 +267,50 @@ function gerarDivisoesSerieC() {
 
 
         // Atualiza o total
-        function updateTotal() {
+   function updateTotal() {
     var valorInput = parseFloat(document.getElementById('valor_input').value);
     var total = 0;
 
-   var selectsA = document.querySelectorAll('#divisions-container-a select');
-    selectsA.forEach(function(select) {
-        if (select.value !== 'opcao') {
-            total += parseFloat(select.selectedOptions[0].dataset.valor);
-        }
-    });
-
-    var selectsB = document.querySelectorAll('#divisions-container-b select');
-    selectsB.forEach(function(select) {
-        if (select.value !== 'opcao') {
-            total += parseFloat(select.selectedOptions[0].dataset.valor);
-        }
-    });
-
-    var selectsC = document.querySelectorAll('#divisions-container-c select');
-    selectsC.forEach(function(select) {
-        if (select.value !== 'opcao') {
-            total += parseFloat(select.selectedOptions[0].dataset.valor);
-        }
-    });
-
-    total *= countSelections();
-    total *= valorInput;
-
-   
-    selecoesFeitas = countSelections();
-
-    // A cada 3 seleções, adicione 10 ao total
-    if (selecoesFeitas % 4 === 0 && selecoesFeitas !== 0) {
-        total += 30;
+    // Função para somar valores das opções selecionadas em uma série
+    function somarValoresSelects(selects) {
+        var subtotal = 0;
+        selects.forEach(function(select) {
+            if (select.value !== 'opcao') {
+                subtotal += parseFloat(select.selectedOptions[0].dataset.valor);
+            }
+        });
+        return subtotal;
     }
 
+    // Somando valores para cada série
+    var selectsA = document.querySelectorAll('#divisions-container-a select');
+    total += somarValoresSelects(selectsA);
+
+    var selectsB = document.querySelectorAll('#divisions-container-b select');
+    total += somarValoresSelects(selectsB);
+
+    var selectsC = document.querySelectorAll('#divisions-container-c select');
+    total += somarValoresSelects(selectsC);
+
+    // Aplicando as regras de bônus baseadas no número de seleções
+    var selecoesFeitas = countSelections();
+    if (selecoesFeitas % 2 === 0 && selecoesFeitas !== 0) {
+        total += 1;
+    } else if (selecoesFeitas % 3 === 0 && selecoesFeitas !== 0) {
+        total += 2;
+    }
+    if (selecoesFeitas % 4 === 0 && selecoesFeitas !== 0) {
+        total += 190;
+    } else if (selecoesFeitas % 5 === 0 && selecoesFeitas !== 0) {
+        total += 210;
+    }
+
+    // Multiplicando o total pelo valor do input
     total *= valorInput;
 
+    // Atualizando o display com o valor total formatado
     document.getElementById('total_display').innerText = 'Total: R$ ' + total.toFixed(2);
 }
-
 
         // Conta o número de seleções feitas pelo usuário
         function countSelections() {
