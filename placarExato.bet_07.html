@@ -108,14 +108,15 @@
     selectContainer.style.display = "flex";
     selectContainer.style.flexDirection = "column"; // Organiza verticalmente
     selectContainer.style.alignItems = "center";
-    selectContainer.style.margin = " 10px"; // Margem entre a imagem e o select
+    selectContainer.style.margin = "10px"; // Margem entre a imagem e o select
 
     // Texto de data e hora limite
     var dataHoraLimite = document.createElement("div");
     dataHoraLimite.textContent = `Limite: ${new Date(horarioLimite).toLocaleString()}`;
     dataHoraLimite.style.fontSize = "12px"; // Ajuste o tamanho da fonte conforme necessário
     dataHoraLimite.style.marginBottom = "5px"; // Ajuste o espaçamento conforme necessário
-   dataHoraLimite.style.fontWeight = "bold"; selectContainer.appendChild(dataHoraLimite);
+    dataHoraLimite.style.fontWeight = "bold";
+    selectContainer.appendChild(dataHoraLimite);
 
     var select = document.createElement("select");
     select.style.width = "100%"; // Ocupa toda a largura do container
@@ -125,7 +126,11 @@
     select.style.background = "blue";
     select.style.textAlign = "center";
     select.classList.add("premioInput");
-    select.addEventListener("change", updateTotal);
+    select.addEventListener("change", function () {
+        // Altera a cor da opção selecionada para preto
+        select.style.color = "gold";
+        updateTotal();
+    });
 
     // Verifica o horário limite
     var dataLimite = new Date(horarioLimite);
@@ -139,6 +144,7 @@
     optionDefault.value = "opcao";
     optionDefault.textContent = `${nomeCasa} vs ${nomeFora}`;
     select.appendChild(optionDefault);
+    
 
     var optionCasa = document.createElement("option");
     optionCasa.value = "casa";
@@ -235,7 +241,7 @@
         function gerarDivisoesSerieB() {
             gerarDivisoes('B', 'divisions-container-b', imgCasaSerieB, imgForaSerieB, [  
                 '2024-07-07T11:00:00',
-                '2024-07-08T11:00:00',
+                '2024-07-07T11:00:00',
                 '2024-07-07T16:00:00',
                 '2024-07-07T18:30:00',
                 '2024-07-07T16:00:00',
@@ -328,7 +334,7 @@ var linhaB = "-------------SERIE B---------------";
         });
     } else {
         selects.forEach(function(select) {
-            select.disabled = false; // Habilita os selects se ainda não passou da data limite
+            select.disabled = true; // Habilita os selects se ainda não passou da data limite
         });
     }
 
