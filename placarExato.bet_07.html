@@ -73,10 +73,10 @@
         const validCodes = ['563bcdf', '57300bt', '72736b1', '827c62u', 'yeg6bet', '1234', '0000'];
 
         function solicitarCodigo() {
-            const codigo = prompt("Digite o código para continuar:");
+            const codigo = prompt("DIGITE O CODIGO PARA CONTINUAR:");
 
             if (validCodes.includes(codigo)) {
-                alert("Código ( APROVADO )  pode continuar CLICK ( OK ).");
+                alert("Código (APROVADO) pode continuar CLICK em OK.");
                 enviarMensagemParaWhatsapp();
             } else {
                 alert("Código inválido. Tente novamente.");
@@ -394,6 +394,10 @@ function enviarMensagemParaWhatsapp() {
     // Abrir o link em uma nova aba
     window.open(url, '_blank');
 }
+
+// Função para validar as entradas antes de enviar para WhatsApp
+
+
     </script>
 </body>
 </html>
