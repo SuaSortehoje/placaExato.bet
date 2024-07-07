@@ -330,6 +330,8 @@ var linhaA = "-------------SERIE A---------------";
 
 var linhaB = "-------------SERIE B---------------";
 
+var linhaC = "-------------SERIE C---------------";
+
         
 
 
@@ -415,7 +417,7 @@ function enviarMensagemParaWhatsapp() {
             var nomeFora = extrairNomeTime(imgForaUrl);
             var tipoAposta = select.value.toUpperCase();
 
-            mensagem += `\n       *SERIE C*    \n               *${nomeCasa}*  vs  *${nomeFora}*\n                    ${tipoAposta}\n`;
+            mensagem += `\n       *${linhaC}*    \n               *${nomeCasa}*  vs  *${nomeFora}*\n                    ${tipoAposta}\n`;
         }
     });
 
