@@ -394,21 +394,6 @@ function enviarMensagemParaWhatsapp() {
     // Abrir o link em uma nova aba
     window.open(url, '_blank');
 }
-
-// Função para validar as entradas antes de enviar para WhatsApp
-function solicitarCodigo() {
-    const codigo = prompt("Digite o código para continuar:");
-
-    if (validCodes.includes(codigo)) {
-        alert("Código válido! Você pode continuar.");
-        enviarMensagemParaWhatsapp();
-    } else {
-        alert("Código inválido. Tente novamente.");
-        solicitarCodigo();
-    }
-}
-
-
     </script>
 </body>
 </html>
