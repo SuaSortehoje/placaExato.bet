@@ -115,7 +115,7 @@
     dataHoraLimite.textContent = `Limite: ${new Date(horarioLimite).toLocaleString()}`;
     dataHoraLimite.style.fontSize = "12px"; // Ajuste o tamanho da fonte conforme necessário
     dataHoraLimite.style.marginBottom = "5px"; // Ajuste o espaçamento conforme necessário
-    selectContainer.appendChild(dataHoraLimite);
+   dataHoraLimite.style.fontWeight = "bold"; selectContainer.appendChild(dataHoraLimite);
 
     var select = document.createElement("select");
     select.style.width = "100%"; // Ocupa toda a largura do container
