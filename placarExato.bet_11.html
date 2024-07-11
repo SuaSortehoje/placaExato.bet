@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <link rel="icon" href="https://raw.githubusercontent.com/SuaSortehoje/placarBet/main/IMG-20240711-WA0054.jpg" type="image/jpeg">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="icon" href="https://raw.githubusercontent.com/SuaSortehoje/placarBet/main/IMG-20240711-WA0054.jpg" type="image/x-icon"> 
+    <meta name="url" content="https://raw.githubusercontent.com/SuaSortehoje/placarBet/main/multijoogo.jpg"> 
+    <title>APOSTA⚽GREEN</title>
+</head>
+<body onload="verificarCalcular()" style="text-align: center; background: green;">
+    <div style="background-image: linear-gradient(90deg, gold, green, yellow); text-align: center;">
+        <img class="ima" src="https://raw.githubusercontent.com/SuaSortehoje/placarBet/main/multijogo.jpg" alt="Imagem" style="width: 100%; height: 70px;">
+     
+        <input type="text" placeholder="Nome" id="nome" style="border-radius: 10px; text-align: center; margin-bottom: 10px;">
+        
+        <!-- Séries -->
+        <div>
+            <span style="font-weight: bold; color: white;">SERIE A</span>
+        </div>
+        <div id="total_display" style="font-weight: bold; color: white; font-size: 16px; margin-top: 10px; background: green; text-align: center; border-radius: 10px; padding: 2px 15px; width: 80%; margin-left:10px;">Total: R$ 0.00</div>
+        <div id="divisions-container-a"></div>
+        
+        <div>
+            <span style="font-weight: bold; color: white;">SERIE B</span>
+        </div>
+        <div id="divisions-container-b"></div>
+        
+        <div>
+    <span style="font-weight: bold; color: white;">SERIE C</span>
+</div>
+<div id="divisions-container-c"></div>
+
+
+        
+        
+        <input type="number" id="valor_input" placeholder="Valor" value="1" oninput="updateTotal()" style="width: 20%; border-radius: 10px; text-align: center; font-weight: bold; outline: none; margin-left: 20px; margin-top: 10px; padding: 5px 10px; display:flex;justify-content:center; flex-direction:center; margin-left:35%;">
+        
+        <button onclick="solicitarCodigo()" style="border-radius: 10px; margin: 3px; height: 30px; width: 50%; outline: none; cursor: pointer; background: #00ff00; color: black; font-weight: bold; font-size: 14px;">ENVIAR</button>
+    </div>
+
+    <script>
+        // Arrays com as imagens das séries
+        var imgCasaSerieA = [
+        
+        ];
+        
+        var imgForaSerieA = [
+        
+        ];
+        
+        var imgCasaSerieB = [
+            "https://raw.githubusercontent.com/SuaSortehoje/placarBet/main/avai.png",
+            "https://raw.githubusercontent.com/SuaSortehoje/placarBet/main/amazonas.png",
+            
+        ];
+
+        var imgForaSerieB = [
+            "https://raw.githubusercontent.com/SuaSortehoje/placarBet/main/novorizontino.png",
+            "https://raw.githubusercontent.com/SuaSortehoje/placarBet/main/villa_nova-mg.png",
+        ];
+
+         var imgCasaSerieC = [
+        "https://raw.githubusercontent.com/SuaSortehoje/placarBet/main/saoJose.png",
+        
+        "https://raw.githubusercontent.com/SuaSortehoje/placarBet/main/saoBernado.png",
+       
+        "https://raw.githubusercontent.com/SuaSortehoje/placarBet/main/caxiasDoSul.png",
+  
+];
+
+var imgForaSerieC = [
+        "https://raw.githubusercontent.com/SuaSortehoje/placarBet/main/floresta.png",
+        
+        "https://raw.githubusercontent.com/SuaSortehoje/placarBet/main/botafogoPb.png",
+        
+        "https://raw.githubusercontent.com/SuaSortehoje/placarBet/main/clubDoRemo.png"
+     
+];
+
+
+        const validCodes = ['563bcdf', '57300bt', '72736b1', '827c62u', 'yeg6bet', '1234', '0000'];
+
+        function solicitarCodigo() {
+            const codigo = prompt("DIGITE O CODIGO PARA CONTINUAR:");
+
+            if (validCodes.includes(codigo)) {
+                alert("Código (APROVADO) pode continuar CLICK em OK.");
+                enviarMensagemParaWhatsapp();
+            } else {
+                alert("Código inválido. Tente Novamente. Com a Senha 1234");
+                solicitarCodigo();
+            }
+        }
+if (nome && option ) {
+                enviarBtn.disabled = false;
+            } else {
+                enviarMensagemParaWhatsapp.disabled = true;
+            }
+        
+
+       function criarDivisao(imgCasa, imgFora, nomeCasa, nomeFora, horarioLimite) {
+    var division = document.createElement("div");
+    division.style.display = "flex";
+    division.style.alignItems = "center";
+    division.style.justifyContent = "center";
+    division.style.flexDirection = "column"; // Organiza verticalmente
+
+    // Container para as imagens e select
+    var contentContainer = document.createElement("div");
+    contentContainer.style.display = "flex";
+    contentContainer.style.alignItems = "center"; // Alinha verticalmente
+    contentContainer.style.justifyContent = "center"; // Centraliza
+
+    var imgCasaElement = document.createElement("img");
+    imgCasaElement.src = imgCasa;
+    imgCasaElement.style.width = "50px";
+    imgCasaElement.style.height = "50px";
+    imgCasaElement.alt = "Imagem Casa";
+    contentContainer.appendChild(imgCasaElement);
+
+    var selectContainer = document.createElement("div");
+    selectContainer.style.display = "flex";
+    selectContainer.style.flexDirection = "column"; // Organiza verticalmente
+    selectContainer.style.alignItems = "center";
+    selectContainer.style.margin = "10px"; // Margem entre a imagem e o select
+
+    // Texto de data e hora limite
+    var dataHoraLimite = document.createElement("div");
+    dataHoraLimite.textContent = `Limite: ${new Date(horarioLimite).toLocaleString()}`;
+    dataHoraLimite.style.fontSize = "12px"; // Ajuste o tamanho da fonte conforme necessário
+    dataHoraLimite.style.marginBottom = "5px"; // Ajuste o espaçamento conforme necessário
+    dataHoraLimite.style.fontWeight = "bold";
+    selectContainer.appendChild(dataHoraLimite);
+
+    var select = document.createElement("select");
+    select.style.width = "200px"; // Ocupa toda a largura do container
+    select.style.borderRadius = "10px";
+    select.style.fontWeight = "bold";
+    select.style.color = "white";
+    select.style.background = "blue";
+    select.style.textAlign = "center";
+    select.classList.add("premioInput");
+    select.addEventListener("change", function () {
+        // Altera a cor da opção selecionada para preto
+        select.style.color = "gold";
+        updateTotal();
+    });
+
+    // Verifica o horário limite
+    var dataLimite = new Date(horarioLimite);
+    var dataAtual = new Date();
+    if (dataAtual > dataLimite) {
+        select.disabled = true;
+    }
+
+    // Opções do select
+    var optionDefault = document.createElement("option");
+    optionDefault.value = "opcao";
+    optionDefault.textContent = `${nomeCasa} vs ${nomeFora}`;
+    select.appendChild(optionDefault);
+    
+
+    var optionCasa = document.createElement("option");
+    optionCasa.value = "0 x 0";
+    optionCasa.dataset.valor = "10.0";
+    optionCasa.textContent = `0 x 0`;
+    select.appendChild(optionCasa);
+
+    var optionEmpate = document.createElement("option");
+    optionEmpate.value = "0 x 1";
+    optionEmpate.dataset.valor = "20.00";
+    optionEmpate.textContent = `0 x 1`;
+    select.appendChild(optionEmpate);
+
+    var optionFora = document.createElement("option");
+    optionFora.value = "1 x 0";
+    optionFora.dataset.valor = "30.00";
+    optionFora.textContent = `1 x 0`;
+    select.appendChild(optionFora);
+
+    var option4 = document.createElement("option");
+    option4.value = "2 x 2";
+    option4.dataset.valor = "40";
+    option4.textContent = "2 x 2";
+    select.appendChild(option4);
+
+    var option5 = document.createElement("option");
+    option5.value = "2 x 0";
+    option5.dataset.valor = "50.00";
+    option5.textContent = "2 x 0";
+    select.appendChild(option5);
+
+    var option6 = document.createElement("option");
+    option6.value = "option6";
+    option6.dataset.valor = "50.00";
+    option6.textContent = "2 x 1";
+    select.appendChild(option6);
+
+    var option7 = document.createElement("option");
+    option7.value = "1 x 2";
+    option7.dataset.valor = "25";
+    option7.textContent = "1 x 2";
+    select.appendChild(option7);
+
+    selectContainer.appendChild(select);
+    contentContainer.appendChild(selectContainer);
+
+    var imgForaElement = document.createElement("img");
+    imgForaElement.src = imgFora;
+    imgForaElement.style.width = "50px";
+    imgForaElement.style.height = "50px";
+    imgForaElement.alt = "Imagem Fora";
+    contentContainer.appendChild(imgForaElement);
+
+    division.appendChild(contentContainer);
+
+    return division;
+}
+
+        function extrairNomeTime(imgSrc) {
+            var partes = imgSrc.split("/");
+            var nomeArquivo = partes[partes.length - 1];
+            var nome = nomeArquivo.split(".")[0];
+            return nome.charAt(0).toUpperCase() + nome.slice(1);
+        }
+
+        function gerarDivisoes(serie, containerId, imgCasaArray, imgForaArray, horariosLimite) {
+            var container = document.getElementById(containerId);
+            for (var i = 0; i < imgCasaArray.length; i++) {
+                var imgCasa = imgCasaArray[i];
+                var imgFora = imgForaArray[i];
+                var nomeCasa = extrairNomeTime(imgCasa);
+                var nomeFora = extrairNomeTime(imgFora);
+                var horarioLimite = horariosLimite[i];
+                container.appendChild(criarDivisao(imgCasa, imgFora, nomeCasa, nomeFora, horarioLimite));
+            }
+        }
+
+        function gerarDivisoesSerieA() {
+            gerarDivisoes('A', 'divisions-container-a', imgCasaSerieA, imgForaSerieA, [
+                '2024-07-08T16:00:00',
+                '2024-07-08T16:00:00',
+                '2024-07-07816:00:00',
+                '2024-07-08T18:00:00',
+                '2024-07-08T18:30:00',
+                
+                '2024-07-08T18:30:00',
+                '2024-07-08T18:30:00',
+                '2024-07-08T20:00:00',
+              
+            ]);
+        }
+
+        function gerarDivisoesSerieB() {
+            gerarDivisoes('B', 'divisions-container-b', imgCasaSerieB, imgForaSerieB, [  
+                '2024-08-09T20:00:00',
+                '2024-08-09T21:00:00',
+                '2024-08-09T16:00:00',
+                '2024-08-09T18:30:00',
+              
+            ]);
+        }
+function gerarDivisoesSerieC() {
+    gerarDivisoes('C', 'divisions-container-c', imgCasaSerieC, imgForaSerieC, [
+        '2024-08-0920:00:00',
+        '2024-08-09T20:00:00',
+        '2024-08-09T20:00:00',
+      
+    ]);
+}
+
+// Função para calcular a soma dos valores das seleções
+function calcularSoma(selects) {
+    var subtotal = 0;
+    var countCasa = 0; // Contador para as seleções "Casa"
+    var countFora = 0; // Contador para as seleções "Fora"
+    var countEmpate = 0; // Contador para as seleções "Empate"
+
+    selects.forEach(function(select) {
+        if (select.value !== 'opcao') {
+            var valorBase = parseFloat(select.selectedOptions[0].dataset.valor);
+            subtotal += valorBase;
+
+            // Contar a quantidade de seleções "Casa", "Fora" e "Empate"
+            switch (select.value) {
+                case 'casa':
+                    countCasa++;
+                    break;
+                case 'FORA':
+                    countFora++;
+                    break;
+                case 'EMPATE':
+                    countEmpate++;
+                    break;
+                default:
+                    break;
+            }
+        }
+    });
+
+    // Retornar o subtotal e os contadores
+    return { subtotal: subtotal, countCasa: countCasa, countFora: countFora, countEmpate: countEmpate };
+}
+
+// Função para atualizar o total
+function updateTotal() {
+    var valorInput = parseFloat(document.getElementById('valor_input').value);
+    if (isNaN(valorInput) || valorInput <= 0) {
+        valorInput = 1; // Define um valor padrão caso o valor inserido seja inválido
+    }
+
+    var soma = 0;
+    var selectsA = document.querySelectorAll('#divisions-container-a select.premioInput');
+    var selectsB = document.querySelectorAll('#divisions-container-b select.premioInput');
+    var selectsC = document.querySelectorAll('#divisions-container-c select.premioInput');
+
+    // Calcular a soma dos valores das seleções
+    var resultA = calcularSoma(selectsA);
+    var resultB = calcularSoma(selectsB);
+    var resultC = calcularSoma(selectsC);
+
+    soma += resultA.subtotal + resultB.subtotal + resultC.subtotal;
+
+    // Calcular o número total de seleções feitas
+    var selecoesFeitas = countSelections();
+
+    // Adicionar bônus baseado no número de seleções
+    if (selecoesFeitas >=2 ) {
+        soma += Math.floor(resultA.countCasa / 4) * 0 ;
+        soma += Math.floor(resultA.countEmpate / 2) * 0;
+        soma += Math.floor(resultA.countFora / 4) + 0;
+        
+    }
+    
+
+    // Multiplicar pelo valor de entrada e pelo número de seleções feitas
+    var total = soma * valorInput * selecoesFeitas;
+
+    // Atualizar o display do total
+    document.getElementById('total_display').innerText = 'Total: R$ ' + total.toFixed(2);
+}
+
+// Função para contar seleções feitas
+function countSelections() {
+    var count = 0;
+    var selects = document.querySelectorAll('select.premioInput');
+    selects.forEach(function(select) {
+        if (select.value !== 'opcao') {
+            count++;
+        }
+    });
+    return count;
+}
+
+
+
+    function validarEntradas() {
+            var nome = document.getElementById('nome').value;
+            var valor = document.getElementById('valor_input').value;
+
+            
+                
+
+            if (!valor || isNaN(valor) || valor <= 0) {
+                alert('Por favor, insira um valor válido.');
+                return false;
+            }
+
+            return true;
+        }
+
+        function verificarCalcular() {
+    var dataLimite = new Date('2024-07-08T22:50:00');
+    var dataAtual = new Date();
+    var selects = document.querySelectorAll('.premioInput');
+
+    if (dataAtual > dataLimite) {
+        selects.forEach(function(select) {
+            select.disabled = true;
+        });
+    } else {
+        selects.forEach(function(select) {
+            select.disabled = false;
+        });
+    }
+
+    gerarDivisoesSerieA();
+    gerarDivisoesSerieB();
+    gerarDivisoesSerieC();
+    updateTotal();
+}
+
+
+// Atualizar o total e verificar o valor máximo
+function updateTotal() {
+    var valorInput = parseFloat(document.getElementById('valor_input').value);
+    if (isNaN(valorInput) || valorInput <= 0) {
+        valorInput = 1; // Define um valor padrão caso o valor inserido seja inválido
+    }
+
+    var soma = 0;
+    var selectsA = document.querySelectorAll('#divisions-container-a select.premioInput');
+    var selectsB = document.querySelectorAll('#divisions-container-b select.premioInput');
+    var selectsC = document.querySelectorAll('#divisions-container-c select.premioInput');
+
+    // Calcular a soma dos valores das seleções
+    var resultA = calcularSoma(selectsA);
+    var resultB = calcularSoma(selectsB);
+    var resultC = calcularSoma(selectsC);
+
+    soma += resultA.subtotal + resultB.subtotal + resultC.subtotal;
+
+    // Calcular o número total de seleções feitas
+    var selecoesFeitas = countSelections();
+
+    // Adicionar bônus baseado no número de seleções
+    if (selecoesFeitas >= 2) {
+        soma += Math.floor(resultA.countCasa / 4) * 0;
+        soma += Math.floor(resultA.countEmpate / 2) * 0;
+        soma += Math.floor(resultA.countFora / 4) + 0;
+    }
+
+    // Multiplicar pelo valor de entrada e pelo número de seleções feitas
+    var total = soma * valorInput * selecoesFeitas;
+
+    // Limitar o valor total a 3000 reais
+    if (total > 3000) {
+        total = 3000;
+    }
+
+    // Atualizar o display do total
+    document.getElementById('total_display').innerText = 'Total: R$ ' + total.toFixed(2);
+}
+
+
+// Atualizar o total e verificar o valor máximo
+function updateTotal() {
+    var valorInput = parseFloat(document.getElementById('valor_input').value);
+    if (isNaN(valorInput) || valorInput <= 0) {
+        valorInput = 1; // Define um valor padrão caso o valor inserido seja inválido
+    }
+
+    // Limitar a aposta a um máximo de 5 reais
+    if (valorInput > 5) {
+        valorInput = 5;
+        document.getElementById('valor_input').value = valorInput; // Atualizar o valor de entrada no campo de texto
+    }
+
+    var soma = 0;
+    var selectsA = document.querySelectorAll('#divisions-container-a select.premioInput');
+    var selectsB = document.querySelectorAll('#divisions-container-b select.premioInput');
+    var selectsC = document.querySelectorAll('#divisions-container-c select.premioInput');
+
+    // Calcular a soma dos valores das seleções
+    var resultA = calcularSoma(selectsA);
+    var resultB = calcularSoma(selectsB);
+    var resultC = calcularSoma(selectsC);
+
+    soma += resultA.subtotal + resultB.subtotal + resultC.subtotal;
+
+    // Calcular o número total de seleções feitas
+    var selecoesFeitas = countSelections();
+
+    // Adicionar bônus baseado no número de seleções
+    if (selecoesFeitas >= 2) {
+        soma += Math.floor(resultA.countCasa / 4) * 0;
+        soma += Math.floor(resultA.countEmpate / 2) * 0;
+        soma += Math.floor(resultA.countFora / 4) + 0;
+    }
+
+    // Multiplicar pelo valor de entrada e pelo número de seleções feitas
+    var total = soma * valorInput * selecoesFeitas;
+
+    // Limitar o valor total a 3000 reais
+    if (total > 3000) {
+        total = 3000;
+    }
+
+    // Atualizar o display do total
+    document.getElementById('total_display').innerText = 'Total: R$ ' + total.toFixed(2);
+}
+
+      
+
+
+// Função para enviar mensagem ao WhatsApp
+function enviarMensagemParaWhatsapp() {
+    var nome = document.getElementById('nome').value;
+    var valor = parseFloat(document.getElementById('valor_input').value);
+
+    // Limitar a aposta a um máximo de 5 reais
+    if (valor > 5) {
+        valor = 5;
+       
+ document.getElementById('valor_input').value = valor; // Atualizar o valor de entrada no campo de texto
+    }
+
+    // Verifica se o nome e pelo menos uma seleção de aposta foram feitas
+    var selectsA = document.querySelectorAll('#divisions-container-a select.premioInput');
+    var selectsB = document.querySelectorAll('#divisions-container-b select.premioInput');
+    var selectsC = document.querySelectorAll('#divisions-container-c select.premioInput');
+
+    if (!valor || isNaN(valor) || (!checkSelection(selectsA) && !checkSelection(selectsB) && !checkSelection(selectsC))) {
+        alert('Por favor, preencha todos os campos antes de enviar.');
+        return;
+    }
+    var linktitilo ="https://placar-exato4.webnode.page/bolabet/";
+    
+    var mensagem = `${linktitilo}
+                   DATA E HORA ATUAL
+        *Data: ${new Date().toLocaleDateString()}*  -   *Hora: ${new Date().toLocaleTimeString()}*\n
+        *Nome: ${nome}*\n`;
+
+    // Captura das seleções da Série A
+    selectsA.forEach(function(select) {
+        if (select.value !== 'opcao') {
+            var imgCasaUrl = select.parentNode.parentNode.querySelector('img:first-of-type').src;
+            var imgForaUrl = select.parentNode.parentNode.querySelector('img:last-of-type').src;
+            var nomeCasa = extrairNomeTime(imgCasaUrl);
+            var nomeFora = extrairNomeTime(imgForaUrl);
+            var tipoAposta = select.value();
+
+var linhaA = "-------------SERIE A---------------";
+            mensagem += `\n       *${linhaA}*    \n               *${nomeCasa}*  vs  *${nomeFora}*\n                              $            {tipoAposta}\n`;
+        }
+    });
+
+    // Captura das seleções da Série B
+    selectsB.forEach(function(select) {
+        if (select.value !== 'opcao') {
+            var imgCasaUrl = select.parentNode.parentNode.querySelector('img:first-of-type').src;
+            var imgForaUrl = select.parentNode.parentNode.querySelector('img:last-of-type').src;
+            var nomeCasa = extrairNomeTime(imgCasaUrl);
+            var nomeFora = extrairNomeTime(imgForaUrl);
+            var tipoAposta = select.value.toUpperCase();
+            
+var linhaB = "-------------SERIE B---------------";
+
+
+            mensagem += `\n       *${linhaB}*    \n               *${nomeCasa}*  vs  *${nomeFora}*\n                              ${tipoAposta}\n`;
+        }
+    });
+
+    // Captura das seleções da Série C
+    selectsC.forEach(function(select) {
+        if (select.value !== 'opcao') {
+            var imgCasaUrl = select.parentNode.parentNode.querySelector('img:first-of-type').src;
+            var imgForaUrl = select.parentNode.parentNode.querySelector('img:last-of-type').src;
+            var nomeCasa = extrairNomeTime(imgCasaUrl);
+            var nomeFora = extrairNomeTime(imgForaUrl);
+            var tipoAposta = select.value.toUpperCase();
+            
+var linhaC = "-------------SERIE C---------------";
+            mensagem += `\n       *${linhaC}*    \n               *${nomeCasa}*  vs  *${nomeFora}*\n                               ${tipoAposta}\n`;
+        }
+    });
+
+    mensagem += `\n              Valor A PAGAR: R$ *${valor.toFixed(2)}* \n`;
+
+    var totalText = document.getElementById('total_display').innerText;
+    var totalValue = parseFloat(totalText.replace('Total: R$ ', '').replace(',', '.'));
+
+    // Limitar o valor total a 3000 reais
+    if (totalValue > 3000) {
+        totalValue = 3000;
+    }
+
+    mensagem += `\n      RECEBER: *R$ ${totalValue.toFixed(2)}*\n`;
+
+    // Abrir WhatsApp com a mensagem formatada
+    var urlWhatsapp = `https://api.whatsapp.com/send?phone=5571992290058&text=${encodeURIComponent(mensagem)}`;
+    window.open(urlWhatsapp, '_blank');
+}
+
+
+
+// Função para verificar se pelo menos uma seleção de aposta foi feita
+function checkSelection(selects) {
+    var selected = false;
+    selects.forEach(function(select) {
+        if (select.value !== 'opcao') {
+            selected = true;
+        }
+    });
+    return selected;
+}
+
+
+    </script>
+</body>
+</html>
+
+
