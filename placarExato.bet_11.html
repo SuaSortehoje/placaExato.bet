@@ -244,9 +244,7 @@ if (nome && option ) {
                 '2024-07-11T21:30:00',
                 '2024-08-08T21:30:00',
                 
-                '2024-08-08T18:30:00',
-                '2024-08-08T18:30:00',
-                '2024-08-08T20:00:00',
+            
               
             ]);
         }
@@ -484,6 +482,7 @@ function updateTotal() {
 
 
 // Função para enviar mensagem ao WhatsApp
+// Função para enviar mensagem ao WhatsApp
 function enviarMensagemParaWhatsapp() {
     var nome = document.getElementById('nome').value;
     var valor = parseFloat(document.getElementById('valor_input').value);
@@ -491,8 +490,7 @@ function enviarMensagemParaWhatsapp() {
     // Limitar a aposta a um máximo de 5 reais
     if (valor > 5) {
         valor = 5;
-       
- document.getElementById('valor_input').value = valor; // Atualizar o valor de entrada no campo de texto
+        document.getElementById('valor_input').value = valor; // Atualizar o valor de entrada no campo de texto
     }
 
     // Verifica se o nome e pelo menos uma seleção de aposta foram feitas
@@ -504,73 +502,61 @@ function enviarMensagemParaWhatsapp() {
         alert('Por favor, preencha todos os campos antes de enviar.');
         return;
     }
+
     var linktitilo ="https://placar-exato4.webnode.page/bolabet/";
-    
-    var mensagem = `${linktitilo}
-                   DATA E HORA ATUAL
-        *Data: ${new Date().toLocaleDateString()}*  -   *Hora: ${new Date().toLocaleTimeString()}*\n
-        *Nome: ${nome}*\n`;
+    var mensagem = `${linktitilo}\nDATA E HORA ATUAL\n*Data: ${new Date().toLocaleDateString()}*  -   *Hora: ${new Date().toLocaleTimeString()}*\n*Nome: ${nome}*\n`;
 
     // Captura das seleções da Série A
+    var linhaA = "-------------SERIE A---------------";
+    mensagem += `\n       *${linhaA}*\n`;
     selectsA.forEach(function(select) {
         if (select.value !== 'opcao') {
             var imgCasaUrl = select.parentNode.parentNode.querySelector('img:first-of-type').src;
             var imgForaUrl = select.parentNode.parentNode.querySelector('img:last-of-type').src;
             var nomeCasa = extrairNomeTime(imgCasaUrl);
             var nomeFora = extrairNomeTime(imgForaUrl);
-            var tipoAposta = select.value();
-
-var linhaA = "-------------SERIE A---------------";
-            mensagem += `\n       *${linhaA}*    \n               *${nomeCasa}*  vs  *${nomeFora}*\n                              $            {tipoAposta}\n`;
+            var tipoAposta = select.value;
+            mensagem += `               *${nomeCasa}*  vs  *${nomeFora}*\n                              ${tipoAposta}\n`;
         }
     });
 
     // Captura das seleções da Série B
+    var linhaB = "-------------SERIE B---------------";
+    mensagem += `\n       *${linhaB}*\n`;
     selectsB.forEach(function(select) {
         if (select.value !== 'opcao') {
             var imgCasaUrl = select.parentNode.parentNode.querySelector('img:first-of-type').src;
             var imgForaUrl = select.parentNode.parentNode.querySelector('img:last-of-type').src;
             var nomeCasa = extrairNomeTime(imgCasaUrl);
             var nomeFora = extrairNomeTime(imgForaUrl);
-            var tipoAposta = select.value.toUpperCase();
-            
-var linhaB = "-------------SERIE B---------------";
-
-
-            mensagem += `\n       *${linhaB}*    \n               *${nomeCasa}*  vs  *${nomeFora}*\n                              ${tipoAposta}\n`;
+            var tipoAposta = select.value;
+            mensagem += `               *${nomeCasa}*  vs  *${nomeFora}*\n                              ${tipoAposta}\n`;
         }
     });
 
     // Captura das seleções da Série C
+    var linhaC = "-------------SERIE C---------------";
+    mensagem += `\n       *${linhaC}*\n`;
     selectsC.forEach(function(select) {
         if (select.value !== 'opcao') {
             var imgCasaUrl = select.parentNode.parentNode.querySelector('img:first-of-type').src;
             var imgForaUrl = select.parentNode.parentNode.querySelector('img:last-of-type').src;
             var nomeCasa = extrairNomeTime(imgCasaUrl);
             var nomeFora = extrairNomeTime(imgForaUrl);
-            var tipoAposta = select.value.toUpperCase();
-            
-var linhaC = "-------------SERIE C---------------";
-            mensagem += `\n       *${linhaC}*    \n               *${nomeCasa}*  vs  *${nomeFora}*\n                               ${tipoAposta}\n`;
+            var tipoAposta = select.value;
+            mensagem += `               *${nomeCasa}*  vs  *${nomeFora}*\n                              ${tipoAposta}\n`;
         }
     });
 
     mensagem += `\n              Valor A PAGAR: R$ *${valor.toFixed(2)}* \n`;
 
-    var totalText = document.getElementById('total_display').innerText;
-    var totalValue = parseFloat(totalText.replace('Total: R$ ', '').replace(',', '.'));
+    // Gerar o link do WhatsApp com a mensagem
+    var url = `https://api.whatsapp.com/send?phone=seu-numero&text=${encodeURIComponent(mensagem)}`;
 
-    // Limitar o valor total a 3000 reais
-    if (totalValue > 3000) {
-        totalValue = 3000;
-    }
-
-    mensagem += `\n      RECEBER: *R$ ${totalValue.toFixed(2)}*\n`;
-
-    // Abrir WhatsApp com a mensagem formatada
-    var urlWhatsapp = `https://api.whatsapp.com/send?phone=5571992290058&text=${encodeURIComponent(mensagem)}`;
-    window.open(urlWhatsapp, '_blank');
+    // Abrir o link em uma nova aba
+    window.open(url, '_blank');
 }
+
 
 
 
